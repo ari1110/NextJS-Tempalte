@@ -31,7 +31,7 @@
         }
     },
     "forwardPorts": [3000],
-    "postCreateCommand": "npm install",
+    "postCreateCommand": "",
     "remoteUser": "node",
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/next-app,type=bind",
     "workspaceFolder": "/workspaces/next-app"
