@@ -6,6 +6,7 @@ ARG PROJECT_NAME=next-app
 # Set environment variables
 ENV NODE_ENV=development
 ENV PROJECT_FOLDER=/workspaces/${PROJECT_NAME}/next-app
+RUN mkdir -p ${PROJECT_FOLDER}
 
 # Install only the necessary libraries
 RUN apt-get update && apt-get install -y \
