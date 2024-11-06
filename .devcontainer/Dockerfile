@@ -1,5 +1,12 @@
 FROM mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm
 
+# Add an ARG for the project name with a default value
+ARG PROJECT_NAME=next-app
+
+# Set environment variables
+ENV NODE_ENV=development
+ENV PROJECT_FOLDER=/workspaces/${PROJECT_NAME}
+
 # Install only the necessary libraries
 RUN apt-get update && apt-get install -y \
     libnss3 \
@@ -25,7 +32,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN pipx ensurepath
 
-ENV NODE_ENV=development
-WORKDIR /workspaces/next-app
+# Set the dynamic working directory
+WORKDIR ${PROJECT_FOLDER}
 
 SHELL ["/bin/bash", "-c"]
