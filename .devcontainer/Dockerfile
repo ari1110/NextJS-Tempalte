@@ -8,16 +8,19 @@ ENV NODE_ENV=development
 ENV PROJECT_FOLDER=/workspaces/${PROJECT_NAME}/next-app
 
 # Create directory and set permissions more comprehensively
-RUN mkdir -p ${PROJECT_FOLDER} && \
-    chown -R node:node /workspaces && \
-    chmod -R 777 /workspaces && \
+RUN mkdir -p "${PROJECT_FOLDER}" && \
+    chown -R node:node "/workspaces" && \
+    chmod -R 777 "/workspaces" && \
     # Ensure .npm directory permissions
-    mkdir -p /home/node/.npm && \
-    chown -R node:node /home/node/.npm && \
-    chmod -R 777 /home/node/.npm
+    mkdir -p "/home/node/.npm" && \
+    chown -R node:node "/home/node/.npm" && \
+    chmod -R 777 "/home/node/.npm" && \
+    # Add node user to sudoers
+    echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/node
 
 # Install only the necessary libraries
 RUN apt-get update && apt-get install -y \
+    sudo \
     libnss3 \
     libnspr4 \
     libatk1.0-0 \
@@ -45,3 +48,4 @@ RUN pipx ensurepath
 WORKDIR ${PROJECT_FOLDER}
 
 SHELL ["/bin/bash", "-c"]
+RUN set -e  # Exit on error
