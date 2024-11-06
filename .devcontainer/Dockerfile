@@ -7,10 +7,14 @@ ARG PROJECT_NAME=next-app
 ENV NODE_ENV=development
 ENV PROJECT_FOLDER=/workspaces/${PROJECT_NAME}/next-app
 
-# Create directory and set permissions
+# Create directory and set permissions more comprehensively
 RUN mkdir -p ${PROJECT_FOLDER} && \
     chown -R node:node /workspaces && \
-    chmod -R 755 /workspaces
+    chmod -R 777 /workspaces && \
+    # Ensure .npm directory permissions
+    mkdir -p /home/node/.npm && \
+    chown -R node:node /home/node/.npm && \
+    chmod -R 777 /home/node/.npm
 
 # Install only the necessary libraries
 RUN apt-get update && apt-get install -y \
