@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm
 ARG PROJECT_NAME=${localWorkspaceFolderBasename}
 # Set environment variables
 ENV NODE_ENV=development
-ENV PROJECT_FOLDER=/workspaces/${PROJECT_NAME}/next-app
+ENV PROJECT_FOLDER=/workspaces/${PROJECT_NAME}
 
 # Install only the necessary libraries
 RUN apt-get update && apt-get install -y \

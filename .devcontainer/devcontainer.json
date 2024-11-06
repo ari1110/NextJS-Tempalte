@@ -34,8 +34,8 @@
         }
     },
     "forwardPorts": [3000],
-    "onCreateCommand": "cd next-app && npm install && npm update",
+    "onCreateCommand": "cd next-app && npm install",
     "postStartCommand": "cd next-app && npm update",
     "remoteUser": "node",
-    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/next-app"
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
 }
