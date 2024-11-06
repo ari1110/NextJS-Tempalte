@@ -34,7 +34,7 @@
         }
     },
     "forwardPorts": [3000],
-    "postCreateCommand": "if [ ! -f package.json ] || ! grep -q 'next' package.json; then npx create-next-app@latest . --yes --typescript --eslint --tailwind --src-dir --import-alias '@/*' --app --turbopack; fi && npm update && npm install eslint@latest eslint-config-next@latest",
+    "initializeCommand": "npm update",
     "remoteUser": "node",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/next-app"
 }
