@@ -1,12 +1,5 @@
 FROM mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm
 
-# Add an ARG for the project name using localWorkspaceFolderBasename
-ARG PROJECT_NAME=${localWorkspaceFolderBasename}
-
-# Set environment variables
-ENV NODE_ENV=development
-ENV PROJECT_FOLDER=/workspaces/${PROJECT_NAME}
-
 # Install only the necessary libraries
 RUN apt-get update && apt-get install -y \
     sudo \
@@ -30,6 +23,3 @@ RUN apt-get update && apt-get install -y \
     jq \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
-# Set the dynamic working directory
-WORKDIR ${PROJECT_FOLDER}
