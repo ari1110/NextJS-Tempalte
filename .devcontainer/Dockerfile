@@ -2,6 +2,7 @@ FROM mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm
 
 # Add an ARG for the project name using localWorkspaceFolderBasename
 ARG PROJECT_NAME=${localWorkspaceFolderBasename}
+
 # Set environment variables
 ENV NODE_ENV=development
 ENV PROJECT_FOLDER=/workspaces/${PROJECT_NAME}
@@ -30,9 +31,5 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pipx ensurepath
-
 # Set the dynamic working directory
 WORKDIR ${PROJECT_FOLDER}
-
-SHELL ["/bin/bash", "-c"]
